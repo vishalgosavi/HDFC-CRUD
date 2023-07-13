@@ -1,12 +1,18 @@
 const Product = require("../models/productModel");
 const Order= require("../models/orderModel");
+const pagination = require("../utility/pagination");
+const sorting = require("../utility/sorting");
 
-exports.getAllProducts = (req, res) => {
-  const { page, size } = req.pagination;
+exports.getAllProducts = async(req, res) => {
+  const pageAsNumber = Number.parseInt(req.query.page);
+  const sizeAsNumber = Number.parseInt(req.query.size);
+  const sort = req.query.sort;
 
-    Product.findAndCountAll({limit:size, offset:page * size})
+  const  sortArray = await sorting(sort);
+  const { page, size } = await pagination(pageAsNumber,sizeAsNumber);
+
+    Product.findAndCountAll({order:[sortArray], limit:size, offset:page * size})
         .then(data => {
-          console.log("data ::",data);
             res.status(200).send({
               content: data.rows,
               totalPages: Math.ceil(data.count / Number.parseInt(size))

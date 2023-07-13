@@ -1,6 +1,4 @@
-const pagination = (req, res, next) => {
-    const pageAsNumber = Number.parseInt(req.query.page);
-    const sizeAsNumber = Number.parseInt(req.query.size);
+const pagination = (pageAsNumber,sizeAsNumber) => {
   
     let page = 0;
     if(!Number.isNaN(pageAsNumber) && pageAsNumber > 0){
@@ -11,10 +9,9 @@ const pagination = (req, res, next) => {
     if(!Number.isNaN(sizeAsNumber) && !(sizeAsNumber > 10) && !(sizeAsNumber < 1)){
       size = sizeAsNumber;
     }
-    req.pagination = {
+    return {
       page, size
     }
-    next();
   }
 
   module.exports = pagination;
