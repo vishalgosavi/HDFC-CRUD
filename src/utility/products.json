@@ -1,0 +1,102 @@
+[
+    {
+        "productId" : 1,
+        "productName" : "bat",
+        "price" : 10
+    },
+    {
+        "productId" : 2,
+        "productName" : "ball",
+        "price" : 5
+    },
+    {
+        "productId" : 3,
+        "productName" : "Shirt",
+        "price" : 25
+    },
+    {
+        "productId" : 4,
+        "productName" : "pant",
+        "price" : 11
+    },
+    {
+        "productId" : 5,
+        "productName" : "cap",
+        "price" : 2
+    },
+    {
+        "productId" : 6,
+        "productName" : "shoes",
+        "price" : 30
+    },
+    {
+        "productId" : 7,
+        "productName" : "mouse",
+        "price" : 10
+    },
+    {
+        "productId" : 8,
+        "productName" : "charger",
+        "price" : 15
+    },
+    {
+        "productId" : 9,
+        "productName" : "football",
+        "price" : 9
+    },
+    {
+        "productId" : 10,
+        "productName" : "glass",
+        "price" : 10
+    },
+    {
+        "productId" : 11,
+        "productName" : "mobile",
+        "price" : 100
+    },
+    {
+        "productId" : 12,
+        "productName" : "fridger",
+        "price" : 150
+    },
+    {
+        "productId" : 13,
+        "productName" : "AC",
+        "price" : 190
+    },
+    {
+        "productId" : 14,
+        "productName" : "mat",
+        "price" : 8
+    },
+    {
+        "productId" : 15,
+        "productName" : "bottle",
+        "price" : 10
+    },
+    {
+        "productId" : 16,
+        "productName" : "remote",
+        "price" : 14
+    },
+    {
+        "productId" : 17,
+        "productName" : "pillow",
+        "price" : 12
+    },
+    {
+        "productId" : 18,
+        "productName" : "watch",
+        "price" : 28
+    },
+    {
+        "productId" : 19,
+        "productName" : "cycle",
+        "price" : 200
+    },
+    {
+        "productId" : 20,
+        "productName" : "TV",
+        "price" : 170
+    }
+]

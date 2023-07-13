@@ -12,7 +12,7 @@ exports.getAllProducts = async (req, res) => {
   const sortArray = await sorting(sort);
   const { page, size } = await pagination(pageAsNumber, sizeAsNumber);
 
-  Product.findAndCountAll({ order: [sortArray], limit: size, offset: page * size })
+  Product.findAndCountAll({ order: [sortArray], limit: size, offset: (page-1) * size })
     .then(data => {
       res.status(200).send({
         content: data.rows,
