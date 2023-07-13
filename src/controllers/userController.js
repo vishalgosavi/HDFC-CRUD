@@ -33,8 +33,7 @@ exports.loginUser = async (req, res) => {
     res
       .status(401)
       .send({ message: "Password is incorrect, Unauthorized User" });
-  }
-
+  }else{
   try {
     let token = await tokenGeneration(user);
     res.send({ Message: "Logged In successfully", Token: token });
@@ -44,6 +43,7 @@ exports.loginUser = async (req, res) => {
         err.message || "Some error occurred while login the user."
     });
   }
+}
 };
 
 exports.createUser = async (req, res) => {
