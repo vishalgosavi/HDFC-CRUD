@@ -2,10 +2,15 @@ const Product = require("../models/productModel");
 const Order= require("../models/orderModel");
 
 exports.getAllProducts = (req, res) => {
+  const { page, size } = req.pagination;
 
-    Product.findAll()
+    Product.findAndCountAll({limit:size, offset:page * size})
         .then(data => {
-            res.status(200).send(data);
+          console.log("data ::",data);
+            res.status(200).send({
+              content: data.rows,
+              totalPages: Math.ceil(data.count / Number.parseInt(size))
+            });
         })
         .catch(err => {
             res.status(500).send({
@@ -35,7 +40,7 @@ exports.getProductByID = (req, res) => {
         });
 };
 
-exports.orderProduct = async (req, res) => {
+exports.orderProduct = (req, res) => {
   
     const product = {
         orderId: req.body.orderId,
@@ -56,3 +61,53 @@ exports.orderProduct = async (req, res) => {
       });
   
   }
+
+exports.createProducts = async (req, res) => {
+  
+    const product = {
+      productId: req.body.productId,
+      productName: req.body.productName,
+      price: req.body.price,
+    };
+  
+    Product.create(product)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while inserting the product."
+        });
+      });
+  
+  }
+
+exports.updateProduct = (req, res) => {
+    const id = req.body.productId;
+
+    Product.update(req.body, {
+      where: { productId: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Product updated successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot update product with id=${id}.`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating product with id=" + id
+        });
+      });
+
+}
+
+exports.deleteProduct = (req, res) => {
+    
+}

@@ -1,14 +1,15 @@
 const { Router } = require("express");
-const user = require("../controllers/userController")
+const user = require("../controllers/userController");
+const { verifyToken } = require("../../middleware/verifyToken"); 
 
 const router = Router();
 
 router.post("/",user.createUser);
 
-router.get("/me/orders",user.getOrdersByID);
-
 router.post("/login",user.loginUser);
 
-router.post("/me",user.updateUser);
+router.get("/me/orders",verifyToken,user.getOrdersByID);
+
+router.put("/me",verifyToken,user.updateUser);
 
 module.exports = router
