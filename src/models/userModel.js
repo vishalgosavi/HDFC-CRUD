@@ -3,14 +3,17 @@ const sequelize = require("./index");
 
 const User = sequelize.define("user", {
   userId: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    primaryKey: true,
   },
   name: {
     type: Sequelize.STRING
   },
+  role: {
+    type: Sequelize.STRING
+  },
   email: {
-    type: Sequelize.STRING,
-    primaryKey: true,
+    type: Sequelize.STRING
   },
   password: {
     type: Sequelize.STRING

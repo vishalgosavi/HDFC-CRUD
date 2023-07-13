@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const Order = require("../models/orderModel");
+const getUser = require("../utility/getuser");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -24,7 +25,7 @@ const tokenGeneration = async(userData) => {
 
 exports.loginUser = async (req, res) => {
 
-  const user = await getUserByID(req.body.email);
+  const user = await getUser(req.body.email);
 
   const match = await bcrypt.compare(req.body.password, user.password);
   if (!match) {
@@ -55,6 +56,7 @@ exports.createUser = async (req, res) => {
 
   const user = {
     name: req.body.name,
+    role: req.body.role,
     userId: req.body.userId,
     email: req.body.email,
     password: await bcrypt.hash(req.body.password, 10)
@@ -87,21 +89,8 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-const getUserByID = async(email) => {
-try{
- let result = await User.findByPk(email);
- return result.dataValues;
-} 
-catch(err) {
-      console.log("Error during fetching user");
-    }
-};
-
 exports.getOrdersByID = (req, res) => {
   let emailId = req.payload.email;
-
-  console.log("emailId::",req.payload.email);
-
 
   Order.findAll({where:{userEmail:emailId}})
     .then(data => {

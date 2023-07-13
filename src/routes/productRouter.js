@@ -10,10 +10,10 @@ router.get("/:id",verifyToken,product.getProductByID);
 
 router.post("/order",verifyToken,product.orderProduct);
 
-router.put("/update",product.updateProduct);
+router.put("/update",verifyToken,product.updateProduct);
 
-router.delete("/delete",product.deleteProduct);
+router.delete("/delete/:id",verifyToken,product.deleteProduct);
 
-router.post("/",product.createProducts);
+router.post("/",verifyToken,product.createProducts);
 
 module.exports = router 
