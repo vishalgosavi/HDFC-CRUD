@@ -12,4 +12,6 @@ router.get("/me/orders",verifyToken,user.getOrdersByID);
 
 router.put("/me",verifyToken,user.updateUser);
 
+router.put("/resetPass",verifyToken,user.resetPassword);
+
 module.exports = router
