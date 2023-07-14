@@ -169,7 +169,7 @@ exports.deleteProduct = async(req, res) => {
       });
   }else{
     res.status(400).send({
-      message: "You are not authorized person to update record"
+      message: "You are not authorized person to delete record"
     });
     return;
   }
