@@ -103,7 +103,9 @@ exports.updateProduct = async (req, res) => {
 
   const user = await getUser(emailId);
 
-  if (user.role === "Admin") {
+  console.log("user::",user);
+
+  if (user.role.trim().toLowerCase() === "admin") {
     Product.update(req.body, {
       where: { productId: id }
     })
@@ -123,6 +125,11 @@ exports.updateProduct = async (req, res) => {
           message: "Error updating product with id=" + id
         });
       });
+  }else{
+    res.status(400).send({
+      message: "You are not authorized person to update record"
+    });
+    return;
   }
 
 }
@@ -140,7 +147,7 @@ exports.deleteProduct = async(req, res) => {
 
   const user = await getUser(emailId);
 
-  if (user.role === "Admin") {
+  if (user.role.trim().toLowerCase() === "admin") {
     Product.destroy({
       where: { productId: id }
     })
@@ -160,6 +167,11 @@ exports.deleteProduct = async(req, res) => {
           message: "Error deleting product with id=" + id
         });
       });
+  }else{
+    res.status(400).send({
+      message: "You are not authorized person to update record"
+    });
+    return;
   }
 
 }
